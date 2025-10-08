@@ -69,7 +69,7 @@
   No analysis results yet. Enter text and click 'Analyze' button.
 </div>
   <!-- Display using computed humanResults signal -->
-<div *ngFor="let sentence of humanResults(); let i = index">
+<div *ngFor="let sentence of readableResults(); let i = index">
   <h4> analysis results #{{ i + 1 }}</h4>
   <div>{{ sentence }}</div>
 </div>

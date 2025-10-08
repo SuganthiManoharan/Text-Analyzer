@@ -67,7 +67,7 @@ export class AnalyzerComponent {
   }
 
     // Computed signal: a human readble string for each result
-    humanResults = computed(() =>
+    readableResults = computed(() =>
       this.resultsHistory().map((result: AnalysisResult) => {
         if (!result) return '';
         return Object.entries(result)
@@ -76,10 +76,5 @@ export class AnalyzerComponent {
       })
     );
 
-    getCharacterCounts(counts: { [key: string]: number }): string[] {
-      return Object.entries(counts)
-        .sort(([charA], [charB]) => charA.localeCompare(charB))
-        .map(([char, count]) => `Character '${char}' appears ${count} time${count > 1 ? 's' : ''}`);
-    }
 
 }
