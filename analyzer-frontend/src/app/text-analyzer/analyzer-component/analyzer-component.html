@@ -1,0 +1,77 @@
+<div class="container">
+    <h1>Text Analyzer Application </h1>
+<div>
+   
+  <div class="row mt-5">
+      <div class="col-3">
+          <label> Text Analayzer Mode Current Mode: </label>
+          <label >{{ online ? 'Online' : 'Offline' }}</label>
+        </div>
+        <div class="col-1">
+            <input class="checkbox" type="checkbox" id="modeToggle" [(ngModel)]="online" (change)="toggleMode($event)" />
+          </div>
+        </div>
+
+        <div class="row mt-5">
+        <div class="col-3">
+          <label for="inputText">Input Text:</label>
+        </div>
+        <div class="col-2">
+          <textarea class="form-control"  id="inputText" [(ngModel)]="inputText" placeholder="Enter text here..."></textarea>
+        </div>
+      </div>
+      <div class="row mt-5">
+        <div class="col-3">
+          <label for="typeSelect">Select Analyis Type:</label>
+        </div>
+        <div class="col-2">
+          <select id="modeSelect" [(ngModel)]="mode">
+            <option value="vowels">Vowels</option>
+            <option value="consonants">Consonants</option>
+          </select>
+        </div>
+        </div>
+     
+        <div class="row mt-5">
+          <div class="col-1">
+
+    <button (click)="analyze()">Analyze</button>
+  </div>
+  <div class="col-1">
+    <button (click)=" clearInput()">Clear Text</button>  
+  </div>
+  <div class="col-2">
+    <button (click)="clearHistory()">Clear History</button>  
+  </div>
+  </div>
+
+  </div>
+  
+  <div class="row mt-5">
+  <div class="col-6">
+    <h3>Analysis Results:</h3>
+    <div *ngIf="resultsHistory.length === 0" class="no-history">
+      No analysis results yet. Enter text and click 'Analyze' button.
+    </div>
+  
+  <div *ngFor="let result of resultsHistory(); let i = index">
+    <h4>Analysis #{{ i + 1 }}</h4>
+    <ul>
+      <li *ngFor="let letter of result | keyvalue">
+        Letter '{{ letter.key }}' appears {{ letter.value }} times
+      </li>
+    </ul>
+  </div>
+</div>	
+</div>	
+<h3>Analysis Results in readable sentence:</h3>
+<div *ngIf="resultsHistory.length === 0" class="no-history">
+  No analysis results yet. Enter text and click 'Analyze' button.
+</div>
+  <!-- Display using computed humanResults signal -->
+<div *ngFor="let sentence of humanResults(); let i = index">
+  <h4> analysis results #{{ i + 1 }}</h4>
+  <div>{{ sentence }}</div>
+</div>
+
+</div>
